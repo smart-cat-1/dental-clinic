@@ -9,27 +9,21 @@ import services6 from '../assets/services/services6.jpg';
 
 type ServiceItem = {
   title: string;
-  description: string;
   img: string;
 };
 
-type CarouselProps = {
-  items: ServiceItem[];
-  className?: string;
-};
-
-const defaultServiceData: ServiceItem[] = [
-  { title: 'Digital Smile Makeover', description: 'Modern cosmetic dental treatment with full smile design and restoration.', img: services1 },
-  { title: 'Pediatric Care Program', description: 'Gentle dental care tailored for children in a family-friendly environment.', img: services2 },
-  { title: 'Implant Restoration', description: 'Precision dental implant therapy for durable and natural-looking results.', img: services3 },
-  { title: 'Comprehensive Treatment', description: 'Integrated periodontal and endodontic solutions for complex cases.', img: services4 },
-  { title: 'Orthodontic Aesthetics', description: 'Invisible aligners and functional correction for beautiful alignment.', img: services5 },
-  { title: 'Periodontal Maintenance', description: 'Professional gum care and long-term oral health management.', img: services6 },
+const ServiceData: ServiceItem[] = [
+  { title: 'Preventive Dentistry', img: services1 },
+  { title: 'Pediatric Dentistry', img: services2 },
+  { title: 'Implant Dentistry', img: services3 },
+  { title: 'Comprehensive Treatment', img: services4 },
+  { title: 'Orthodontics', img: services5 },
+  { title: 'Aesthetic Dentistry', img: services6 },
 ];
 
-export function ServiceCarousel({ items, className = '' }: CarouselProps) {
+function ServiceCarousel({ items }: { items: ServiceItem[]}) {
   return (
-    <section className={`px-4 py-8 md:px-8 ${className}`}>
+    <section className="px-4 py-8 md:px-8">
       <CarouselSwiper
         list={items}
         renderItem={(item) => (
@@ -39,10 +33,9 @@ export function ServiceCarousel({ items, className = '' }: CarouselProps) {
               style={{ backgroundImage: `url(${item.img})` }}
             />
             <div className="absolute inset-0 bg-slate-900/23 transition duration-300 group-hover:bg-blue-900" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-5">
+            <div className="absolute left-0 right-0 bottom-0 flex flex-col items-center justify-center p-5">
               <img src={logo} alt="Logo" className="w-20 mb-4" />
               <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-              <p className="mt-2 text-m text-center text-white">{item.description}</p>
             </div>
           </div>
         )}
@@ -52,7 +45,7 @@ export function ServiceCarousel({ items, className = '' }: CarouselProps) {
 }
 
 export default function ServicePage() {
-  return <ServiceCarousel items={defaultServiceData} />;
+  return <ServiceCarousel items={ServiceData} />;
 }
 
 
