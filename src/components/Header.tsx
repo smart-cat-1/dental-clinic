@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import logo from "../assets/logo.jpg";
+import logo from "../assets/home/logo.jpg";
 
 export default function Header() {
     return (
@@ -11,7 +11,7 @@ export default function Header() {
 
     <nav className="flex flex-wrap justify-center md:justify-end gap-4 [&>a]:hover:text-blue-600 gap-8 flex-1 min-w-[240px]">
       <a href="#home">Home</a>
-      <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
       <a href="#team">Team</a>
       <a href="#contact">Contact</a>
       <a href="#reserve">Reserve</a>

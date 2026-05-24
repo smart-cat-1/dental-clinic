@@ -1,11 +1,11 @@
 import Header from "../../components/Header";
-import bannerImage from "../../assets/home-banner.jpg";
-import bannerTextImage from "../../assets/home-banner-text.jpg";
-import doctor1 from "../../assets/doctor1.jpg";
-import doctor2 from "../../assets/doctor2.jpg";
-import doctor3 from "../../assets/doctor3.jpg";
+import bannerImage from "../../assets/home/banner.jpg";
+import bannerTextImage from "../../assets/home/text.jpg";
+import doctor1 from "../../assets/team/doctor1.jpg";
+import doctor2 from "../../assets/team/doctor2.jpg";
+import doctor3 from "../../assets/team/doctor3.jpg";
 import ServicePage from "../../components/Carousel";
-import AdvantagesCarousel from "../../components/AdvantagesCarousel";
+
 
 export default function Home() {
   return (
@@ -15,9 +15,9 @@ export default function Home() {
         <img src={bannerImage} alt="Dental Clinic" className="w-full h-auto object-cover" />
         <img src={bannerTextImage} alt="Dental Clinic" className="w-full h-auto object-cover" />
 
-        <section id="projects" className="scroll-mt-24 w-full bg-gray-100">
+        <section id="services" className="scroll-mt-24 w-full bg-gray-100">
           <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 xl:px-16">
-            <h2 className="text-5xl font-bold mb-4 pl-7">Projects</h2>
+            <h2 className="text-5xl font-bold mb-4 pl-7">Services</h2>
             <div className="flex-col md:flex-row flex items-center justify-between gap-8">
               <p className="text-2xl pl-7">Comprehensive Dental Services</p>
               <button className="bg-blue-500 text-white px-4 py-2 mr-9 rounded hover:bg-blue-600">More+</button>
@@ -30,7 +30,7 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 xl:px-16">
             <h2 className="text-5xl font-bold mb-4 pl-7">Ten Core Advantages</h2>
             <p className="text-2xl pl-7">Our commitment to quality</p>
-            <AdvantagesCarousel showCount={4} className="mt-8" />
+            
           </div>
         </section>
 
