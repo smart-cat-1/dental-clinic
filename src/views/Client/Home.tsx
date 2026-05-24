@@ -1,11 +1,13 @@
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import bannerImage from "../../assets/home/banner.jpg";
 import bannerTextImage from "../../assets/home/text.jpg";
 import doctor1 from "../../assets/team/doctor1.jpg";
 import doctor2 from "../../assets/team/doctor2.jpg";
 import doctor3 from "../../assets/team/doctor3.jpg";
-import ServicePage from "../../components/Carousel";
-import AdvantagePage from "../../components/test";
+import doctor4 from "../../assets/team/doctor4.jpg";
+import { AdvantagePage, ServicePage} from "../../components/CarouselPage";
+
 
 
 export default function Home() {
@@ -20,7 +22,7 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 xl:px-16">
             <h2 className="text-5xl font-bold mb-4 pl-7 text-blue-800">Services</h2>
             <div className="flex-col md:flex-row flex items-center justify-between gap-8">
-              <p className="text-2xl pl-7">Comprehensive Dental Services</p>
+              <p className="text-2xl pl-7">Our Professional Dental Treatments</p>
               <button className="bg-blue-500 text-white px-4 py-2 mr-9 rounded hover:bg-blue-600">More+</button>
             </div>
             <ServicePage />
@@ -30,36 +32,46 @@ export default function Home() {
         <section className="w-full bg-white">
           <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 xl:px-16">
             <h2 className="text-5xl font-bold mb-4 pl-7 text-blue-800">Nine Core Advantages</h2>
-            <p className="text-2xl pl-7">Our commitment to quality</p>
+            <p className="text-2xl pl-7">Why choose us?</p>
             <AdvantagePage />
           </div>
         </section>
 
         <section id="team" className="scroll-mt-24 w-full bg-gray-100">
           <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 xl:px-16">
-            <h2 className="text-5xl font-bold mb-4 text-blue-800">Team</h2>
+            <h2 className="text-5xl font-bold mb-4 text-blue-800 pl-7">Team</h2>
+            <p className="text-2xl pl-7 mb-8">Main Professional Dental Experts</p>
             <div className="space-y-6">
               <img src={doctor1} alt="Doctor 1" className="w-full rounded-3xl object-cover" />
               <img src={doctor2} alt="Doctor 2" className="w-full rounded-3xl object-cover" />
               <img src={doctor3} alt="Doctor 3" className="w-full rounded-3xl object-cover" />
+              <img src={doctor4} alt="Doctor 4" className="w-full rounded-3xl object-cover" />
             </div>
           </div>
         </section>
 
         <section id="contact" className="scroll-mt-24 w-full bg-white">
           <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 xl:px-16">
-            <h2 className="text-5xl font-bold mb-4 text-blue-800">Contact</h2>
+            <h2 className="text-5xl font-bold mb-4 text-blue-800 pl-7">Contact</h2>
             <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
               <div className="space-y-6">
-                <p className="text-2xl">Have questions? Reach out to us!</p>
+                <p className="text-2xl pl-7">Have questions? Reach out to us!</p>
                 <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
                   <div className="mb-4">
                     <h3 className="text-xl font-semibold">Phone</h3>
-                    <a href="tel:123-456-7890" className="text-2xl text-blue-600 hover:text-blue-800">123-456-7890</a>
+                    <a href="tel:555-555-5555" className="text-2xl text-blue-600 hover:text-blue-800">+1 (540) 555-1212</a>
                   </div>
-                  <div>
+                  <div className="mb-4">
                     <h3 className="text-xl font-semibold">Email</h3>
-                    <a href="mailto:123456@ikun.com" className="text-2xl text-blue-600 hover:text-blue-800">123456@ikun.com</a>
+                    <a href="mailto:z6Lb2@example.com" className="text-2xl text-blue-600 hover:text-blue-800">support@dentalclinic.com</a>
+                  </div>
+                  <div className="mb-4">
+                    <h3 className="text-xl font-semibold">Address</h3>
+                    <a href="https://www.google.com/maps" className="text-2xl text-blue-600 hover:text-blue-800">1200 Healthcare Drive <br />Richmond, VA, 23220</a>
+                  </div>
+                  <div className="mb-4">
+                    <h3 className="text-xl font-semibold">Hours</h3>
+                    <a href="https://www.google.com/maps" className="text-2xl text-blue-600 hover:text-blue-800">Monday - Friday: 9am - 6pm</a>
                   </div>
                 </div>
               </div>
@@ -67,7 +79,7 @@ export default function Home() {
                 <iframe
                   title="Lincoln Memorial Map"
                   src="https://www.openstreetmap.org/export/embed.html?bbox=-77.0522%2C38.8880%2C-77.0481%2C38.8905&layer=mapnik&marker=38.88926897957032%2C-77.05018048464742"
-                  className="h-72 w-full"
+                  className="h-full w-full"
                   loading="lazy"
                   referrerPolicy="no-referrer"
                 />
@@ -86,15 +98,10 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="w-full bg-black text-white">
-          <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 xl:px-16">
-            <div className="flex flex-col gap-6 text-center md:text-left md:flex-row md:items-center md:justify-between">
-              <p className="text-lg font-semibold">Dental Clinic</p>
-              <p className="text-sm text-slate-400">© 2026 Dental Clinic. All rights reserved.</p>
-              <p className="text-sm text-slate-400">support@dentalclinic.com</p>
-            </div>
-          </div>
+        <footer className="w-full bg-black">
+          <Footer />
         </footer>
+
       </main>
     </div>
   );

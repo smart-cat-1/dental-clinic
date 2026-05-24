@@ -1,4 +1,4 @@
-import CarouselSwiper from './Carousel-Swiper';
+import CarouselSwiper from './CarouselSwiper';
 import logo from '../assets/home/logo2.png';
 import services1 from '../assets/services/services1.jpg';
 import services2 from '../assets/services/services2.jpg';
@@ -6,6 +6,16 @@ import services3 from '../assets/services/services3.jpg';
 import services4 from '../assets/services/services4.jpg';
 import services5 from '../assets/services/services5.jpg';
 import services6 from '../assets/services/services6.jpg';
+
+import advantage1 from '../assets/advantages/advantage1.jpg';
+import advantage2 from '../assets/advantages/advantage2.jpg';
+import advantage3 from '../assets/advantages/advantage3.jpg';
+import advantage4 from '../assets/advantages/advantage4.jpg';
+import advantage5 from '../assets/advantages/advantage5.jpg';
+import advantage6 from '../assets/advantages/advantage6.jpg';
+import advantage7 from '../assets/advantages/advantage7.jpg';
+import advantage8 from '../assets/advantages/advantage8.jpg';
+import advantage9 from '../assets/advantages/advantage9.jpg';
 
 type ServiceItem = {
   title: string;
@@ -21,11 +31,28 @@ const ServiceData: ServiceItem[] = [
   { title: 'Aesthetic Dentistry', img: services6 },
 ];
 
+type AdvantageItem = {
+  img: string;
+};
+
+const AdvantageData: AdvantageItem[] = [
+  { img: advantage1 },
+  { img: advantage2 },
+  { img: advantage3 },
+  { img: advantage4 },
+  { img: advantage5 },
+  { img: advantage6 },
+  { img: advantage7 },
+  { img: advantage8 },
+  { img: advantage9 }
+];
+
 function ServiceCarousel({ items }: { items: ServiceItem[]}) {
   return (
     <section className="px-4 py-8 md:px-8">
       <CarouselSwiper
         list={items}
+        slidesPerGroup={1}
         renderItem={(item) => (
           <div className="group relative h-120 overflow-hidden bg-white">
             <div
@@ -44,17 +71,31 @@ function ServiceCarousel({ items }: { items: ServiceItem[]}) {
   );
 }
 
-export default function ServicePage() {
+function AdvantageCarousel({ items }: { items: AdvantageItem[]}) {
+  return (
+    <section className="px-4 py-8 md:px-8">
+      <CarouselSwiper
+        list={items}
+        slidesPerGroup={3}
+        renderItem={(item) => (
+          <div className="group relative h-140 overflow-hidden bg-white">
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${item.img})` }}
+            />
+          </div>
+        )}
+      />
+    </section>
+  );
+}
+
+function ServicePage() {
   return <ServiceCarousel items={ServiceData} />;
 }
 
+function AdvantagePage() {
+  return <AdvantageCarousel items={AdvantageData} />;
+}
 
-
-
-
-
-
-
-
-
-
+export { ServicePage, AdvantagePage };

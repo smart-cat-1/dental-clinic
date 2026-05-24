@@ -7,9 +7,10 @@ type Props<T> = {
   list: T[];
   showCount?: number;
   renderItem: (item: T) => React.ReactNode;
+  slidesPerGroup?: number;
 };
 
-export default function CarouselSwiper<T>({ list, showCount = 3, renderItem }: Props<T>) {
+export default function CarouselSwiper<T>({ list, showCount = 3, renderItem, slidesPerGroup = 1 }: Props<T>) {
   const swiperRef = useRef<SwiperClass | null>(null);
 
   return (
@@ -38,14 +39,15 @@ export default function CarouselSwiper<T>({ list, showCount = 3, renderItem }: P
 
       <Swiper
         slidesPerView={showCount}
+        slidesPerGroup={slidesPerGroup}
         loop={true}
         spaceBetween={16}
         onSwiper={(swiper) => {swiperRef.current = swiper;}}
         breakpoints={{
-          320: { slidesPerView: 1 },
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: showCount },
+          320: { slidesPerView: 1, slidesPerGroup: 1 },
+          640: { slidesPerView: 1, slidesPerGroup: 1 },
+          768: { slidesPerView: 2, slidesPerGroup: Math.min(2, slidesPerGroup) },
+          1024: { slidesPerView: showCount, slidesPerGroup },
         }}
         className="overflow-visible"
       >

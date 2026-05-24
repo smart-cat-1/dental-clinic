@@ -15,7 +15,7 @@ export default function Header() {
       <a href="#team">Team</a>
       <a href="#contact">Contact</a>
       <a href="#reserve">Reserve</a>
-      <Link className="whitespace-nowrap" to="/admin/login">Admin Login</Link>
+      <Link to="../admin/login" className="whitespace-nowrap">Admin Login</Link>
     </nav>
   </div>
 </header>
