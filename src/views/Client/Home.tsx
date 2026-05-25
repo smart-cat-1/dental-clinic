@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import bannerImage from "../../assets/home/banner.jpg";
@@ -23,7 +24,7 @@ export default function Home() {
             <h2 className="text-5xl font-bold mb-4 pl-7 text-blue-800">Services</h2>
             <div className="flex-col md:flex-row flex items-center justify-between gap-8">
               <p className="text-2xl pl-7">Our Professional Dental Treatments</p>
-              <button className="bg-blue-500 text-white px-4 py-2 mr-9 rounded hover:bg-blue-600">More+</button>
+              <Link to="/services" className="bg-blue-500 text-white px-4 py-2 mr-9 rounded hover:bg-blue-600">More+</Link>
             </div>
             <ServicePage />
           </div>
