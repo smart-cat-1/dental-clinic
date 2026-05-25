@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import service102 from "../assets/services/service102.jpg";
 import service103 from "../assets/services/service103.jpg";
@@ -192,7 +192,7 @@ function ServiceCard({
   description
 }: ServiceCardProps) {
   return (
-    <div className="flex gap-6 items-center border-b py-8 bg-grey-100">
+    <div className="flex gap-6 items-center py-6 my-5 bg-gray-100">
       <img
         src={image}
         alt={title}
@@ -212,9 +212,11 @@ function ServiceCard({
 }
 
 export default function ServicesPage() {
-  const [activeTab, setActiveTab] = useState<string>(
-    tabList[0].key
-  );
+  const [searchParams, setSearchParams] =
+  useSearchParams();
+
+  const activeTab =
+    searchParams.get("tab") || tabList[0].key;
 
   const currentTab = tabList.find(
     tab => tab.key === activeTab
@@ -223,12 +225,11 @@ export default function ServicesPage() {
   return (
     <div className="w-full max-w-6xl mx-auto">
 
-      {/* Tabs */}
-      <div className="flex justify-between border-b py-8">
+      <div className="flex justify-between border-t bg-gray-100 py-4 mb-8">
         {tabList.map(tab => (
           <button
             key={tab.key}
-            onClick={() => setActiveTab(tab.key)}
+            onClick={() => setSearchParams({ tab: tab.key })}
             className={`pb-4 text-lg cursor-pointer hover:text-blue-600 hover:border-b-2 ${
               activeTab === tab.key
                 ? "border-b-2 border-blue-600 text-blue-600 font-medium"
@@ -240,7 +241,7 @@ export default function ServicesPage() {
         ))}
       </div>
 
-      <div className="py-10 bg-white">
+      <div className="bg-white">
         {currentTab?.services.map(service => (
           <ServiceCard
             key={service.title}

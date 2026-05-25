@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import ContactInfo from "../../components/ContactInfo";
 import bannerImage from "../../assets/home/banner.jpg";
 import bannerTextImage from "../../assets/home/text.jpg";
 import doctor1 from "../../assets/team/doctor1.jpg";
 import doctor2 from "../../assets/team/doctor2.jpg";
 import doctor3 from "../../assets/team/doctor3.jpg";
-import doctor4 from "../../assets/team/doctor4.jpg";
 import { AdvantagePage, ServicePage} from "../../components/CarouselPage";
 
 
@@ -46,7 +46,6 @@ export default function Home() {
               <img src={doctor1} alt="Doctor 1" className="w-full rounded-3xl object-cover" />
               <img src={doctor2} alt="Doctor 2" className="w-full rounded-3xl object-cover" />
               <img src={doctor3} alt="Doctor 3" className="w-full rounded-3xl object-cover" />
-              <img src={doctor4} alt="Doctor 4" className="w-full rounded-3xl object-cover" />
             </div>
           </div>
         </section>
@@ -58,22 +57,7 @@ export default function Home() {
               <div className="space-y-6">
                 <p className="text-2xl pl-7">Have questions? Reach out to us!</p>
                 <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-                  <div className="mb-4">
-                    <h3 className="text-xl font-semibold">Phone</h3>
-                    <a href="tel:555-555-5555" className="text-2xl text-blue-600 hover:text-blue-800">+1 (540) 555-1212</a>
-                  </div>
-                  <div className="mb-4">
-                    <h3 className="text-xl font-semibold">Email</h3>
-                    <a href="mailto:z6Lb2@example.com" className="text-2xl text-blue-600 hover:text-blue-800">support@dentalclinic.com</a>
-                  </div>
-                  <div className="mb-4">
-                    <h3 className="text-xl font-semibold">Address</h3>
-                    <a href="https://www.google.com/maps" className="text-2xl text-blue-600 hover:text-blue-800">1200 Healthcare Drive <br />Richmond, VA, 23220</a>
-                  </div>
-                  <div className="mb-4">
-                    <h3 className="text-xl font-semibold">Hours</h3>
-                    <a href="https://www.google.com/maps" className="text-2xl text-blue-600 hover:text-blue-800">Monday - Friday: 9am - 6pm</a>
-                  </div>
+                  <ContactInfo />
                 </div>
               </div>
               <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-sm">
@@ -93,9 +77,9 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 xl:px-16 text-center">
             <h2 className="text-5xl font-bold mb-4 text-blue-800">Reserve</h2>
             <p className="text-2xl">Book your appointment today</p>
-            <button className="mx-auto mt-10 block min-w-[260px] rounded-full bg-blue-600 px-12 py-4 text-lg font-semibold text-white shadow-xl shadow-blue-500/20 transition hover:bg-blue-700">
+            <Link to="/reserve" className="mx-auto mt-10 block min-w-[260px] rounded-full bg-blue-600 px-12 py-4 text-lg font-semibold text-white shadow-xl shadow-blue-500/20 transition hover:bg-blue-700">
               Reserve Now
-            </button>
+            </Link>
           </div>
         </section>
 

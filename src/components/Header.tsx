@@ -18,12 +18,12 @@ export default function Header() {
             <span className="inline-block transition-transform duration-200 group-hover:rotate-180">∧</span>
           </span>
           <div className="absolute left-1/2 transform -translate-x-1/2 top-full hidden group-hover:block bg-white shadow-2lg py-2 min-w-[250px] border-y">
-            <Link to="" className="block px-4 py-2 hover:bg-gray-100">Preventive Dentistry</Link>
-            <Link to="" className="block px-4 py-2 hover:bg-gray-100">Pediatric Dentistry</Link>
-            <Link to="" className="block px-4 py-2 hover:bg-gray-100">Implant Dentistry</Link>
-            <Link to="" className="block px-4 py-2 hover:bg-gray-100">Comprehensive Treatment</Link>
-            <Link to="" className="block px-4 py-2 hover:bg-gray-100">Orthodontics</Link>
-            <Link to="" className="block px-4 py-2 hover:bg-gray-100">Aesthetic Dentistry</Link>
+            <Link to="/services?tab=preventive" className="block px-4 py-2 hover:bg-gray-100">Preventive Dentistry</Link>
+            <Link to="/services?tab=pediatric" className="block px-4 py-2 hover:bg-gray-100">Pediatric Dentistry</Link>
+            <Link to="/services?tab=implant" className="block px-4 py-2 hover:bg-gray-100">Implant Dentistry</Link>
+            <Link to="/services?tab=comprehensive" className="block px-4 py-2 hover:bg-gray-100">Comprehensive Treatment</Link>
+            <Link to="/services?tab=orthodontics" className="block px-4 py-2 hover:bg-gray-100">Orthodontics</Link>
+            <Link to="/services?tab=aesthetic" className="block px-4 py-2 hover:bg-gray-100">Aesthetic Dentistry</Link>
           </div>
         </div>
 
