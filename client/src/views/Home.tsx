@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import ContactInfo from "../../components/ContactInfo";
-import bannerImage from "../../assets/home/banner.jpg";
-import bannerTextImage from "../../assets/home/text.jpg";
-import doctor1 from "../../assets/team/doctor1.jpg";
-import doctor2 from "../../assets/team/doctor2.jpg";
-import doctor3 from "../../assets/team/doctor3.jpg";
-import { AdvantagePage, ServicePage} from "../../components/CarouselPage";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import ContactInfo from "../components/ContactInfo";
+import bannerImage from "../assets/home/banner.jpg";
+import bannerTextImage from "../assets/home/text.jpg";
+import doctor1 from "../assets/team/doctor1.jpg";
+import doctor2 from "../assets/team/doctor2.jpg";
+import doctor3 from "../assets/team/doctor3.jpg";
+import { AdvantagePage, ServicePage} from "../components/CarouselPage";
 
 
 

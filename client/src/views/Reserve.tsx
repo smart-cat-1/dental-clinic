@@ -1,6 +1,6 @@
-﻿import Footer from "../../components/Footer";
-import Header from "../../components/Header";
-import ContactInfo from "../../components/ContactInfo";
+﻿import Footer from "../components/Footer";
+import Header from "../components/Header";
+import ContactInfo from "../components/ContactInfo";
 import { useMemo, useState } from "react";
 
 type ReserveForm = {

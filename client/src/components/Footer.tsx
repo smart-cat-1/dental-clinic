@@ -1,4 +1,22 @@
 import logo from "../assets/home/logo2.png";
+import { Link } from "react-router-dom";
+
+const serviceLinks = [
+  { label: "Preventive Dentistry", tab: "preventive" },
+  { label: "Pediatric Dentistry", tab: "pediatric" },
+  { label: "Implant Dentistry", tab: "implant" },
+  { label: "Comprehensive Treatment", tab: "comprehensive" },
+  { label: "Orthodontics", tab: "orthodontics" },
+  { label: "Aesthetic Dentistry", tab: "aesthetic" },
+];
+
+const quickLinks = [
+  { label: "Home", to: "/#home" },
+  { label: "Services", to: "/#services" },
+  { label: "Team", to: "/#team" },
+  { label: "Contact", to: "/#contact" },
+  { label: "Reserve", to: "/#reserve" },
+];
 
 export default function Footer() {
     return (
@@ -33,17 +51,16 @@ export default function Footer() {
         </h3>
 
         <ul className="flex flex-col mt-5 space-y-3 text-sm text-slate-400">
-          {["Home", "Services", "Team", "Contact", "Reserve"].map(
-            (link) => (
-              <a
-                href={`#${link.toLowerCase()}`}
-                key={link}
-                className="cursor-pointer transition hover:text-cyan-400"
+          {quickLinks.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                className="block cursor-pointer transition hover:text-cyan-400"
               >
-                {link}
-              </a>
-            )
-          )}
+                {link.label}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -54,19 +71,14 @@ export default function Footer() {
         </h3>
 
         <ul className="mt-5 space-y-3 text-sm text-slate-400">
-          {[
-            "Preventive Dentistry",
-            "Pediatric Dentistry",
-            "Implant Dentistry",
-            "Comprehensive Treatment",
-            "Orthodontics",
-            "Aesthetic Dentistry",
-          ].map((service) => (
-            <li
-              key={service}
-              className="cursor-pointer transition hover:text-cyan-400"
-            >
-              {service}
+          {serviceLinks.map((service) => (
+            <li key={service.tab}>
+              <Link
+                to={`/services?tab=${service.tab}`}
+                className="block cursor-pointer transition hover:text-cyan-400"
+              >
+                {service.label}
+              </Link>
             </li>
           ))}
         </ul>

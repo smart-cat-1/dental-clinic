@@ -21,5 +21,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "client/src/components/ContactInfo.tsx", "client/src/components/CarouselSwiper.tsx", "client/src/components/Footer.tsx", "client/src/components/Header.tsx", "client/src/components/ServiceTab.tsx", "client/src/views/Home.tsx", "client/src/views/Reserve.tsx", "client/src/App.tsx"]
 }

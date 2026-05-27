@@ -1,16 +1,24 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Home from './views/Client/Home';
-import Login from './views/Admin/Login';
-import Services from './views/Client/Services';
-import Reserve from './views/Client/Reserve';
+import './App.css';
+import Home from './views/Home';
+import Login from './views/Login';
+import Services from './views/Services';
+import Reserve from './views/Reserve';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, search, hash } = useLocation();
 
   React.useEffect(() => {
+    if (hash) {
+      requestAnimationFrame(() => {
+        document.getElementById(hash.slice(1))?.scrollIntoView();
+      });
+      return;
+    }
+
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-  }, [pathname]);
+  }, [pathname, search, hash]);
 
   return null;
 }
