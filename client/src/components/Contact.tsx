@@ -1,4 +1,4 @@
-export default function ContactInfo() {
+export default function Contact() {
   return (
     <div className="space-y-6">
       <div className="bg-white p-6 rounded-3xl shadow-sm">

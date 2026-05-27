@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ContactInfo from "../components/ContactInfo";
+import Contact from "../components/Contact";
+
 import bannerImage from "../assets/home/banner.jpg";
 import bannerTextImage from "../assets/home/text.jpg";
+
 import doctor1 from "../assets/team/doctor1.jpg";
 import doctor2 from "../assets/team/doctor2.jpg";
 import doctor3 from "../assets/team/doctor3.jpg";
+
 import { AdvantagePage, ServicePage} from "../components/CarouselPage";
-
-
 
 export default function Home() {
   return (
@@ -57,12 +59,12 @@ export default function Home() {
               <div className="space-y-6">
                 <p className="text-2xl pl-7">Have questions? Reach out to us!</p>
                 <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-                  <ContactInfo />
+                  <Contact />
                 </div>
               </div>
               <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-sm">
                 <iframe
-                  title="Lincoln Memorial Map"
+                  title="Dental Clinic Map"
                   src="https://www.openstreetmap.org/export/embed.html?bbox=-77.0522%2C38.8880%2C-77.0481%2C38.8905&layer=mapnik&marker=38.88926897957032%2C-77.05018048464742"
                   className="h-full w-full"
                   loading="lazy"
@@ -77,7 +79,7 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 xl:px-16 text-center">
             <h2 className="text-5xl font-bold mb-4 text-blue-800">Reserve</h2>
             <p className="text-2xl">Book your appointment today</p>
-            <Link to="/reserve" className="mx-auto mt-10 block min-w-[260px] rounded-full bg-blue-600 px-12 py-4 text-lg font-semibold text-white shadow-xl shadow-blue-500/20 transition hover:bg-blue-700">
+            <Link to="/reserve" className="mx-auto mt-10 block min-w-[260px] rounded-full bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 px-12 py-4 text-lg font-semibold text-white shadow-xl shadow-blue-500/20 transition hover:bg-blue-700">
               Reserve Now
             </Link>
           </div>

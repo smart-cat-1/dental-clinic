@@ -1,7 +1,18 @@
-﻿import Footer from "../components/Footer";
+import { useEffect, useMemo, useState } from "react";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
-import ContactInfo from "../components/ContactInfo";
-import { useMemo, useState } from "react";
+import Contact from "../components/Contact";
+import {
+  createAppointment,
+  getAppointments,
+  type Appointment,
+} from "../api/appointmentApi";
+import {
+  formatTimeLabel,
+  getAvailableTimeSlots,
+  getDateLimits,
+  isClosedDate,
+} from "../utils/appointmentRules";
 
 type ReserveForm = {
   name: string;
@@ -9,6 +20,7 @@ type ReserveForm = {
   email: string;
   service: string;
   date: string;
+  time: string;
   message: string;
 };
 
@@ -18,24 +30,47 @@ const initialForm: ReserveForm = {
   email: "",
   service: "",
   date: "",
-  message: ""
+  time: "",
+  message: "",
 };
 
 export default function Reserve() {
   const [form, setForm] = useState<ReserveForm>(initialForm);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const today = useMemo(() => new Date().toISOString().slice(0, 10), []);
+  const { minDate, maxDate } = useMemo(() => getDateLimits(), []);
+  const bookedTimes = useMemo(
+    () => appointments.map(appointment => appointment.appointmentAt),
+    [appointments]
+  );
+  const availableSlots = useMemo(
+    () => getAvailableTimeSlots(form.date, bookedTimes),
+    [bookedTimes, form.date]
+  );
+
+  useEffect(() => {
+    getAppointments()
+      .then(({ appointments }) => setAppointments(appointments))
+      .catch(() => {
+        setStatusMessage("Unable to load available appointment times.");
+        setIsSuccess(false);
+      });
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
   ) => {
+    const { name, value } = e.target;
+
     setForm(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value,
+      ...(name === "date" ? { time: "" } : {}),
     }));
     setStatusMessage(null);
     setIsSuccess(false);
@@ -46,9 +81,10 @@ export default function Reserve() {
     form.phone.trim() !== "" &&
     form.email.trim() !== "" &&
     form.service !== "" &&
-    form.date !== "";
+    form.date !== "" &&
+    form.time !== "";
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isFormValid) {
       setStatusMessage("Please complete all required fields before submitting.");
@@ -56,10 +92,37 @@ export default function Reserve() {
       return;
     }
 
-    setStatusMessage("Your appointment request has been submitted successfully.");
-    setIsSuccess(true);
-    console.log("Reservation request:", form);
-    setForm(initialForm);
+    if (isClosedDate(form.date) || !availableSlots.includes(form.time)) {
+      setStatusMessage("Please choose an available time during office hours.");
+      setIsSuccess(false);
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      const { appointment } = await createAppointment({
+        name: form.name,
+        phone: form.phone,
+        email: form.email,
+        service: form.service,
+        appointmentAt: form.time,
+        message: form.message,
+      });
+
+      setAppointments(prev => [...prev, appointment]);
+      setStatusMessage("Your appointment request has been submitted successfully.");
+      setIsSuccess(true);
+      setForm(initialForm);
+    } catch (error) {
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : "Unable to submit your appointment request."
+      );
+      setIsSuccess(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -74,9 +137,7 @@ export default function Reserve() {
         </p>
       </section>
 
-      {/* Main */}
       <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-14">
-        {/* Left Info */}
         <div>
           <h2 className="text-3xl font-bold mb-6">Why Choose Us</h2>
 
@@ -85,11 +146,10 @@ export default function Reserve() {
           </p>
 
           <div className="space-y-6">
-            <ContactInfo />
+            <Contact />
           </div>
         </div>
 
-        {/* Form */}
         <div className="bg-white rounded-3xl shadow-xl p-10">
           <h2 className="text-3xl font-bold mb-8 text-center">Book Appointment</h2>
 
@@ -168,6 +228,7 @@ export default function Reserve() {
                 <option value="Preventive Dentistry">Preventive Dentistry</option>
                 <option value="Pediatric Dentistry">Pediatric Dentistry</option>
                 <option value="Implant Dentistry">Implant Dentistry</option>
+                <option value="Comprehensive Treatment">Comprehensive Treatment</option>
                 <option value="Orthodontics">Orthodontics</option>
                 <option value="Aesthetic Dentistry">Aesthetic Dentistry</option>
               </select>
@@ -184,8 +245,41 @@ export default function Reserve() {
                 required
                 aria-required="true"
                 aria-invalid={form.date === "" ? "true" : "false"}
-                min={today}
+                min={minDate}
+                max={maxDate}
               />
+            </label>
+
+            <label className="block">
+              <span className="text-sm font-medium text-slate-700">Preferred Time</span>
+              <select
+                name="time"
+                value={form.time}
+                onChange={handleChange}
+                className="mt-2 w-full border rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-slate-100"
+                required
+                disabled={!form.date || availableSlots.length === 0}
+                aria-required="true"
+                aria-invalid={form.time === "" ? "true" : "false"}
+              >
+                <option value="">
+                  {form.date ? "Select available time" : "Choose a date first"}
+                </option>
+                {availableSlots.map(slot => (
+                  <option key={slot} value={slot}>
+                    {formatTimeLabel(slot)}
+                  </option>
+                ))}
+              </select>
+              {form.date && availableSlots.length === 0 && (
+                <p className="mt-2 text-sm text-rose-600">
+                  No appointment times are available for this date.
+                </p>
+              )}
+              <p className="mt-2 text-xs text-slate-500">
+                Monday-Friday 9:00 AM-6:00 PM, Saturday 9:00 AM-3:00 PM. Sundays,
+                holidays, past times, and dates more than six months away are unavailable.
+              </p>
             </label>
 
             <label className="block">
@@ -203,9 +297,9 @@ export default function Reserve() {
             <button
               type="submit"
               className="w-full bg-blue-600 hover:bg-blue-700 transition text-white py-4 rounded-xl text-lg font-semibold disabled:cursor-not-allowed disabled:bg-slate-400"
-              disabled={!isFormValid}
+              disabled={!isFormValid || isSubmitting}
             >
-              Confirm Reservation
+              {isSubmitting ? "Submitting..." : "Confirm Reservation"}
             </button>
           </form>
         </div>

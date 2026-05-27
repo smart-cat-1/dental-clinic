@@ -16,10 +16,9 @@ export default function Login() {
     try {
       const response = await loginRequest(username, password);
       if (response.ok) {
-        alert('Login successful');
         navigate('/management');
       } else {
-        alert(response.data?.message || 'Invalid username or password');
+        alert('Invalid username or password');
       }
     } catch (error) {
       console.error(error);

@@ -44,9 +44,9 @@ export default function CarouselSwiper<T>({ list, showCount = 3, renderItem, sli
         spaceBetween={16}
         onSwiper={(swiper) => {swiperRef.current = swiper;}}
         breakpoints={{
-          320: { slidesPerView: 1, slidesPerGroup: 1 },
-          640: { slidesPerView: 1, slidesPerGroup: 1 },
-          768: { slidesPerView: 2, slidesPerGroup: Math.min(2, slidesPerGroup) },
+          320: { slidesPerView: 1.3, slidesPerGroup: 1 },
+          640: { slidesPerView: 1.5, slidesPerGroup: 1 },
+          768: { slidesPerView: 2.2, slidesPerGroup: 1 },
           1024: { slidesPerView: showCount, slidesPerGroup },
         }}
         className="overflow-visible"

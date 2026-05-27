@@ -1,6 +1,6 @@
-import Footer from "../../../client/src/components/Footer";
-import Header from "../../../client/src/components/Header";
-import ServiceTab from "../../../client/src/components/ServiceTab";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import ServiceTab from "../components/ServiceTab";
 
 export default function Services() {
   return (
