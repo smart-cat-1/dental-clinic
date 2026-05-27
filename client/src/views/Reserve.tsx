@@ -66,7 +66,6 @@ export default function Reserve() {
     <div className="bg-gray-50 min-h-screen">
       <Header />
 
-      {/* Hero */}
       <section className="bg-gradient-to-r from-blue-700 to-blue-500 text-white py-24 text-center">
         <h1 className="text-5xl font-bold mb-4">Reserve Your Appointment</h1>
         <p className="text-lg max-w-2xl mx-auto opacity-90">
